@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import {Select} from 'modul-components';
-import radValidateHoc from 'src/radValidateHoc';
+import radValidateHoc from './../radValidateHoc';
 import PropTypes from 'prop-types';
 
 const stringOrNode = PropTypes.oneOfType([

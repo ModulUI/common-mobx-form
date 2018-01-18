@@ -2,7 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
 import {PhoneInput} from 'modul-components';
-import radValidateHoc from 'src/radValidateHoc';
+import radValidateHoc from './../radValidateHoc';
 
 
 @observer
