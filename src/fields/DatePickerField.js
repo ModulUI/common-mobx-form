@@ -2,7 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
 import {DatePicker} from 'modul-components';
-import radValidateHoc from 'common/form/radValidateHoc';
+import radValidateHoc from 'src/radValidateHoc';
 
 @observer
 class DatePickerField extends React.Component {

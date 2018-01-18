@@ -1,0 +1,45 @@
+{
+  "passPerPreset": true,
+  "plugins": [
+    "transform-regenerator",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-function-bind",
+    "syntax-decorators",
+    "react-html-attrs"
+  ],
+  "presets": [
+    {
+      "plugins": [
+        "transform-regenerator"
+      ]
+    },
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "safari >= 7"
+          ]
+        },
+        "modules": false,
+        "loose": true
+      }
+    ],
+    "react"
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
+}

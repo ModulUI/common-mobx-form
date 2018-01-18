@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {observer} from 'mobx-react';
 import {SnilsInput} from 'modul-components';
-import radValidateHoc from 'common/form/radValidateHoc';
+import radValidateHoc from 'src/radValidateHoc';
 
 @observer
 class SnilsField extends React.Component {

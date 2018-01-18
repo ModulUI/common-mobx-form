@@ -2,7 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
 import {AmountInput} from 'modul-components';
-import radValidateHoc from 'common/form/radValidateHoc';
+import radValidateHoc from 'src/radValidateHoc';
 
 @observer
 class AmountField extends React.Component {

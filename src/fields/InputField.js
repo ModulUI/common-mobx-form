@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
-import radValidateHoc from 'common/form/radValidateHoc';
+import radValidateHoc from 'src/radValidateHoc';
 
 @observer
 class InputField extends React.Component {
