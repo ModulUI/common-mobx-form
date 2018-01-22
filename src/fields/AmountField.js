@@ -29,6 +29,10 @@ class AmountField extends React.Component {
     this.input.setFocus();
   }
 
+  componentWillReceiveProps (nextProps) {
+    if(this.props.field === nextProps.field) nextProps.field.setFocus = ::this.setFocus;
+  }
+
   componentDidMount() {
     this.props.field.setFocus = ::this.setFocus;
   }

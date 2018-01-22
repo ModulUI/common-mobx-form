@@ -32,9 +32,9 @@ class InputField extends React.Component {
     this.props.field.setFocus = ::this.setFocus;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.field.focused && nextProps.field.autoFocus) { this.input.focus(); }
-    this.props.field.setFocus = ::this.setFocus;
+  componentWillReceiveProps (nextProps) {
+    // if (!nextProps.field.focused && nextProps.field.autoFocus) { this.input.focus(); }
+    if(this.props.field === nextProps.field) nextProps.field.setFocus = ::this.setFocus;
   }
 
   render() {

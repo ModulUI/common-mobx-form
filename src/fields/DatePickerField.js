@@ -58,6 +58,11 @@ class DatePickerField extends React.Component {
     this.input.$input[0].autocomplete = 'off';
   }
 
+  componentWillReceiveProps (nextProps) {
+    this.input.$input[0].autocomplete = 'off';
+    if(this.props.field === nextProps.field) nextProps.field.setFocus = ::this.setFocus;
+  }
+
   render() {
     const {field, className, disabled, readOnly, validator, ...other} = this.props;
     const {tooltip, addClassName} = validator;
