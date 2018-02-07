@@ -9,7 +9,7 @@ class RadioField extends React.Component {
         field: PropTypes.object,
         values: PropTypes.array,
         checked: PropTypes.bool,
-        itemCss: PropTypes.object,
+        itemCss: PropTypes.string,
     };
 
     constructor(props) {
@@ -27,7 +27,7 @@ class RadioField extends React.Component {
             <div>
                 {
                     values.map((value, i) =>
-                        <div key={i} class={itemCss}>
+                        <div key={i} className={itemCss}>
                             <input id={`${ this.inputId }item${ i }`} checked={field.value === value}
                                 {...field.bind({
                                     value,
