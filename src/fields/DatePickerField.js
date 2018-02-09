@@ -55,30 +55,37 @@ class DatePickerField extends React.Component {
 
   componentDidMount() {
     this.props.field.setFocus = ::this.setFocus;
-    this.input.$input[0].autocomplete = 'off';
+    if(this.input.$input && this.input.$input[0]){
+      this.input.$input[0].autocomplete = 'off';
+    }
   }
 
   componentWillReceiveProps (nextProps) {
-    this.input.$input[0].autocomplete = 'off';
     if(this.props.field === nextProps.field) nextProps.field.setFocus = ::this.setFocus;
+  }
+
+  handleChange(e) {
+    const {field} = this.props;
+    if (field.onChange) field.onChange(e);
+    return e
   }
 
   render() {
     const {field, className, disabled, readOnly, validator, ...other} = this.props;
     const {tooltip, addClassName} = validator;
     const classNames = `${ className } ${ addClassName }`;
-    let value = field.$value || '';
-    if (field.$value && typeof field.$value === 'string') {
-      value = new Date(field.$value);
-    }
+    const onChange = ::this.handleChange
+    let value = field.$value || this.input.$input.datetimepicker('getValue');
+    if (typeof field.$value === 'string') value = new Date(field.$value);
     return (
-      <DatePicker {...other}
-        {...field.bind({readOnly, value})}
+      <DatePicker {...tooltip}
+        {...field.bind({onChange, value})}
+        {...other}
         className={classNames}
         ref={input => this.input = input}
         disabled={disabled}
         readOnly={readOnly}
-        {...tooltip} />
+      />
     );
   }
 }
