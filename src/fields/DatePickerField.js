@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
-import DatePicker from '../../../../apps/inputs/src/components/DatePicker';
+import {DatePicker} from 'modul-components';
 import radValidateHoc from './../radValidateHoc';
 
 @observer
