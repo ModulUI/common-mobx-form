@@ -55,8 +55,8 @@ class DatePickerField extends React.Component {
 
   componentDidMount() {
     this.props.field.setFocus = ::this.setFocus;
-    if(this.input.$input && this.input.$input[0]){
-      this.input.$input[0].autocomplete = 'off';
+    if(this.domInput && this.domInput[0]){
+      this.domInput[0].autocomplete = 'off';
     }
   }
 
@@ -64,19 +64,35 @@ class DatePickerField extends React.Component {
     if(this.props.field === nextProps.field) nextProps.field.setFocus = ::this.setFocus;
   }
 
-  handleChange(e) {
+  handleChange(date) {
     const {field} = this.props;
-    if (field.onChange) field.onChange(e);
-    return e
+    if (field.onChange) field.onChange(this.createDateAsUTC(date));
   }
+
+  get domInput() { return this.input && this.input.$input; }
+
+  get value() {
+    let date = this.props.field.value;
+    date = date? new Date(date) : this.domInput && this.domInput.datetimepicker('getValue');
+    if(Object.prototype.toString.call(date) === '[object Date]') date = this.createDateAsUTC(date);
+    return date;
+  }
+
+  createDateAsUTC = d =>
+    new Date(Date.UTC(
+      d.getFullYear(),
+      d.getMonth(),
+      d.getDate(),
+      d.getHours(),
+      d.getMinutes(),
+      d.getSeconds()));
 
   render() {
     const {field, className, disabled, readOnly, validator, ...other} = this.props;
     const {tooltip, addClassName} = validator;
     const classNames = `${ className } ${ addClassName }`;
-    const onChange = ::this.handleChange
-    let value = field.$value || this.input.$input.datetimepicker('getValue');
-    if (typeof field.$value === 'string') value = new Date(field.$value);
+    const onChange = ::this.handleChange;
+    const value = this.value;
     return (
       <DatePicker {...tooltip}
         {...field.bind({onChange, value})}
@@ -84,8 +100,7 @@ class DatePickerField extends React.Component {
         className={classNames}
         ref={input => this.input = input}
         disabled={disabled}
-        readOnly={readOnly}
-      />
+        readOnly={readOnly}/>
     );
   }
 }
