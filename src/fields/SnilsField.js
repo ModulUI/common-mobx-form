@@ -32,7 +32,7 @@ class SnilsField extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.field.focused && nextProps.field.autoFocus) { this.input.focus(); }
-    this.props.field.setFocus = ::this.setFocus;
+    if(this.props.field === nextProps.field) nextProps.field.setFocus = ::this.setFocus;
   }
 
   onChange = e => this.props.field.onChange(e);
