@@ -1,4 +1,3 @@
-import {ReactTooltip} from 'modul-components';
 import {ModulTooltip} from './../../inputs/src/index';
 import React from 'react';
 // todo: observable observer
@@ -120,6 +119,3 @@ function radValidate({tips} = {tips: true}) {
 }
 
 export default radValidate;
-
-/*<ReactTooltip className={classNameTooltip}
- id={this.tooltipId} {...tooltipProps} />*/
