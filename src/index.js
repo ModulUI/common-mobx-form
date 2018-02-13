@@ -8,19 +8,25 @@ import NumberField from './fields/NumberField';
 import DatePickerField from './fields/DatePickerField';
 import RadioField from './fields/RadioField';
 import SnilsField from './fields/SnilsField';
+import PassportSeriesField from './fields/PassportSeriesField';
+import PassportNumberField from './fields/PassportNumberField';
+import PassportDivizionCodeField from './fields/PassportDivizionCodeField';
 import BaseForm from './BaseForm';
 
 export {
-  PhoneField,
-  AmountField,
-  SnilsField,
-  NumberField,
-  InputField,
-  TextareaField,
-  CheckboxField,
-  SelectField,
-  DatePickerField,
-  RadioField,
+    PhoneField,
+    AmountField,
+    SnilsField,
+    NumberField,
+    InputField,
+    TextareaField,
+    CheckboxField,
+    SelectField,
+    DatePickerField,
+    RadioField,
+    PassportSeriesField,
+    PassportNumberField,
+    PassportDivizionCodeField
 };
 
 export default BaseForm;
