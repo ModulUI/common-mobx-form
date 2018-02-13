@@ -6,12 +6,7 @@ const errorsNotEmpty = err => Object.keys(err).map(p => err[p] !== null).include
 
 export default class BaseForm extends Form {
 
-    options() {
-        return {
-            validateOnChange: true,
-            validationDebounceWait: 50
-        };
-    }
+    @observable submitFailed;
 
     constructor(fieldsObj, {hooks, plugins, options}) {
         let customOnSuccess = function () {
@@ -33,22 +28,19 @@ export default class BaseForm extends Form {
         // До super(...props) вызывать this нельзя
         this.customOnSuccess = customOnSuccess;
         this.customOnError = customOnError;
+
+        this.submitFailed = observable(false);
     }
 
-    @observable submitFailed = false
-
-    @action
-    afterFailedSubmit() {
-        this.submitFailed = true;
-    }
-
-    @action
-    afterSuccessSubmit() {
-        this.submitFailed = false;
+    options() {
+        return {
+            validateOnChange: true,
+            validationDebounceWait: 50
+        };
     }
 
     makeField(props) {
-        return new BaseField({...props});
+        return new BaseField({...props}, this);
     }
 
     hooks() {
@@ -63,6 +55,16 @@ export default class BaseForm extends Form {
                 this.customOnError(form);
             },
         };
+    }
+
+    @action
+    afterFailedSubmit() {
+        this.submitFailed.value = true;
+    }
+
+    @action
+    afterSuccessSubmit() {
+        this.submitFailed.value = false;
     }
 
     // Рекурсия позволяет показывать ошибки на массивах

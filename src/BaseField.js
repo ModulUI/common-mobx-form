@@ -2,7 +2,7 @@ import {Field} from 'mobx-react-form';
 import {computed, observable, toJS, action, autorun, observe} from 'mobx';
 
 class BaseField extends Field {
-    constructor(props) {
+    constructor(props, form) {
         super(props);
         this.$hint = props.data && props.data.hint;
 
@@ -18,21 +18,32 @@ class BaseField extends Field {
             }
         });
 
-
+        const disposer3 = observe(form, '$submitting', (submitting) => {
+            if (submitting.newValue) {
+                this.$wasSubmit = true;
+                disposer3();
+            }
+        });
     }
 
     @observable $hint;
     @observable $blured;
+
+    @observable $wasSubmit = false;
 
     @computed
     get hint() {
         return toJS(this.$hint);
     }
 
-    @computed
-    get submitFailed() {
-        return this.state.form.submitFailed;
+    get wasSubmit() {
+        return this.$wasSubmit;
     }
+
+    get blured() {
+        return this.$blured;
+    }
+
 }
 
 export default BaseField;
