@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {observer} from 'mobx-react';
-import {PassportNumberInput} from './../../../inputs/src/index';
+import {PassportNumberInput} from 'modul-components';
 import radValidateHoc from './../radValidateHoc';
 
 @observer
