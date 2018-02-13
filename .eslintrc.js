@@ -15,7 +15,7 @@ module.exports = {
     arrowFunctions: true,
   },
   rules: {
-    "indent": [2, 2],
+    "indent": [2, 4],
     "template-curly-spacing": [2, "always"],
     "jsx-quotes": [2, "prefer-single"],
     "no-extra-semi": "error",
