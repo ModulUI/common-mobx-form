@@ -26,8 +26,8 @@ function radValidate({tips} = {tips: true}) {
             }
 
             showTooltipError() {
-                const {field: {hasError, error, submitFailed, $blured, focused}} = this.props;
-                return hasError && error && (submitFailed || $blured) && focused;
+                const {field: {hasError, error, wasSubmit, blured, focused}} = this.props;
+                return hasError && error && (wasSubmit || blured) && focused;
             }
 
             // TODO: showTooltipHint
@@ -74,12 +74,12 @@ function radValidate({tips} = {tips: true}) {
             render() {
                 const {field, hideTips = false, wrapperClassName = ''} = this.props;
                 const {tipPlace, ...wrappedProps} = this.props;
-                const {isValid, hasError, focused, touched, submitFailed, hint, $blured} = field;
+                const {isValid, hasError, focused, wasSubmit, hint, blured} = field;
 
                 const tooltip = this.getTooltipConfig({id: this.tooltipId});
 
-                const highlightError = (!isValid || hasError) && (submitFailed || $blured);
-                const highlightSuccess = (isValid || !hasError) && $blured;
+                const highlightError = (!isValid || hasError) && (wasSubmit || blured);
+                const highlightSuccess = (isValid || !hasError) && blured;
                 const addClassName = `${ highlightError && 'error' } ${ highlightSuccess && 'success' }`;
 
                 const validator = {
