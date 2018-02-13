@@ -1,4 +1,4 @@
-import {ModulTooltip} from './../../inputs/src/index';
+import {ModulTooltip} from 'modul-components';
 import React from 'react';
 // todo: observable observer
 /**
