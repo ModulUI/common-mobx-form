@@ -77,7 +77,7 @@ class DatePickerField extends React.Component {
 
     @computed get date() {
         let date = this.props.field.value;
-        if (typeof date === 'string') date = new Date(date);
+        if (date && typeof date === 'string') date = new Date(date);
         // Если null - подставит в input текущую дату
         return date || undefined;
     }
