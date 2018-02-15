@@ -2,8 +2,6 @@ import {observable, action} from 'mobx';
 import Form from 'mobx-react-form';
 import BaseField from './BaseField';
 
-const errorsNotEmpty = err => Object.keys(err).map(p => err[p] !== null).includes(true);
-
 export default class BaseForm extends Form {
 
     @observable submitFailed;
@@ -67,6 +65,18 @@ export default class BaseForm extends Form {
         this.submitFailed.value = false;
     }
 
+    static hasErrors(err) {
+        if (!err) {
+            return false;
+        }
+        if (err && typeof err == "string") {
+            return true;
+        }
+        return Object.keys(err).some((item)=> {
+            return typeof err[item] == 'object' ? BaseForm.hasErrors(err[item]) : err[item] != null;
+        });
+    };
+
     // Рекурсия позволяет показывать ошибки на массивах
     static findError(form) {
         if (!form) {
@@ -75,7 +85,10 @@ export default class BaseForm extends Form {
         const arr = [];
         form.fields.forEach(f => arr.push(f));
         const errors = form.errors();
-        const errField = arr.find(f => f.errors() && errorsNotEmpty(f.errors()));
+        //Поиск первой найденной ошибки
+        const errField = arr.find(f => {
+            return BaseForm.hasErrors(f.errors())
+        });
         if (errField && typeof errors[errField.name] === 'string') {
             errField && errField.setFocus instanceof Function && errField.setFocus();
         } else {
