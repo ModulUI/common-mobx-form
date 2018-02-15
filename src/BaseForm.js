@@ -2,7 +2,12 @@ import {observable, action} from 'mobx';
 import Form from 'mobx-react-form';
 import BaseField from './BaseField';
 
-const errorsNotEmpty = err => Object.keys(err).map(p => err[p] !== null).includes(true);
+const errorsNotEmpty = (err) => {
+    if (err && typeof err == "string"){
+        return true;
+    }
+    return Object.keys(err).map(p => err[p] !== null).includes(true)
+};
 
 export default class BaseForm extends Form {
 
@@ -75,7 +80,10 @@ export default class BaseForm extends Form {
         const arr = [];
         form.fields.forEach(f => arr.push(f));
         const errors = form.errors();
-        const errField = arr.find(f => f.errors() && errorsNotEmpty(f.errors()));
+        //Поиск первой найденной ошибки
+        const errField = arr.find(f => {
+            return f.errors() && errorsNotEmpty(f.errors())
+        });
         if (errField && typeof errors[errField.name] === 'string') {
             errField && errField.setFocus instanceof Function && errField.setFocus();
         } else {
