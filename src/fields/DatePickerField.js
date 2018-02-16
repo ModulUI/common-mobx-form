@@ -6,7 +6,7 @@ import {DatePicker} from 'modul-components';
 import radValidateHoc from './../radValidateHoc';
 
 // https://foxhound87.github.io/mobx-react-form/docs/extra/converters/input-output.html
-const outputConverters = date => date.getFullYear ? new Date(Date.UTC(
+const outputConverters = date => date && date.getFullYear ? new Date(Date.UTC(
     date.getFullYear(),
     date.getMonth(),
     date.getDate(),
