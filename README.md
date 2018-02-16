@@ -1,4 +1,4 @@
-** Not for production. Does not contain documentation. **
+**Not for production. Does not contain documentation.**
 # common-mobx-form
 
 ## Пример:
