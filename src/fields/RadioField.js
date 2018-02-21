@@ -28,16 +28,13 @@ class RadioField extends React.Component {
                 {
                     values.map((value, i) =>
                         <div key={i} className={itemCss}>
-                            <input id={`${ this.inputId }item${ i }`} checked={field.value === value}
-                                {...field.bind({
-                                    value,
-                                    checked: field.value === value,
-                                })}
-                                   type='radio'/>
-                            <label for={`${ this.inputId }item${ i }`}
-                                   className='label_check'
-                                   value={value}
-                                   onClick={() => this.handleChange(value)}>
+                            <input checked={field.value === value}
+                                {...field.bind({value, checked: field.value === value})}
+                                id={`${ this.inputId }item${ i }`}
+                                type='radio'/>
+                            <label htmlFor={`${ this.inputId }item${ i }`}
+                                className='label_check'
+                                onClick={() => this.handleChange(value)}>
                                 <i className='icon'/>
                                 <span className='f_small'>{placeholders[i]}</span>
                             </label>
