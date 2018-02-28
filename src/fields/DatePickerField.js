@@ -6,7 +6,7 @@ import {DatePicker} from 'modul-components';
 import radValidateHoc from './../radValidateHoc';
 
 // https://foxhound87.github.io/mobx-react-form/docs/extra/converters/input-output.html
-const outputConverters = date => date.getFullYear ? new Date(Date.UTC(
+const outputConverters = date => date && date.getFullYear ? new Date(Date.UTC(
     date.getFullYear(),
     date.getMonth(),
     date.getDate(),
@@ -60,15 +60,13 @@ class DatePickerField extends React.Component {
         defaultDate: new Date(),
     }
 
-    setFocus = () => this.input.setFocus();
-
-    componentDidMount() {
-        this.setupField(this.props.field);
-    }
+    componentDidMount() {this.setupField(this.props.field);}
 
     componentWillReceiveProps(nextProps) {
         if (this.props.field === nextProps.field) this.setupField(nextProps.field);
     }
+
+    setFocus = () => this.input.setFocus();
 
     setupField(field) {
         field.setFocus = this.setFocus;
@@ -76,8 +74,11 @@ class DatePickerField extends React.Component {
     }
 
     @computed get date() {
-        let date = this.props.field.value;
-        if (date && typeof date === 'string') date = new Date(date);
+        let fieldDate = this.props.field.value;
+        if (fieldDate && typeof fieldDate === 'string') fieldDate = new Date(fieldDate);
+        // при ctrl-v нужно вызвать onChange, считаем значение напрямую, если fieldDate === null
+        let inputDate = this.input && this.input.$input.datetimepicker('getValue');
+        let date = fieldDate || inputDate;
         // Если null - подставит в input текущую дату
         return date || undefined;
     }
@@ -87,6 +88,7 @@ class DatePickerField extends React.Component {
         const {tooltip, addClassName} = validator;
         const classNames = `${ className } ${ addClassName }`;
         const value = this.date;
+
         return (
             <DatePicker {...tooltip}
                 {...field.bind({value})}
@@ -94,7 +96,8 @@ class DatePickerField extends React.Component {
                 className={classNames}
                 ref={input => this.input = input}
                 disabled={disabled}
-                readOnly={readOnly}/>
+                readOnly={readOnly}
+                autoComplete={'off'}/>
         );
     }
 }
