@@ -3,16 +3,18 @@ import {observer} from 'mobx-react';
 import {computed} from 'mobx';
 import PropTypes from 'prop-types';
 import {DatePicker} from 'modul-components';
+import {dateHelper} from 'modul-helpers';
 import radValidateHoc from './../radValidateHoc';
 
 // https://foxhound87.github.io/mobx-react-form/docs/extra/converters/input-output.html
-const outputConverters = date => date && date.getFullYear ? new Date(Date.UTC(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-    date.getSeconds())) : date;
+const outputConverters = date => date && date.getFullYear ?
+    new Date(Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes(),
+        date.getSeconds())) : date;
 
 @observer
 class DatePickerField extends React.Component {
@@ -71,16 +73,28 @@ class DatePickerField extends React.Component {
     setupField(field) {
         field.setFocus = this.setFocus;
         field.$output = outputConverters;
+        // если руками введено верное значение оно мгновенно меняет field
+        this.input.$input[0].oninput = e =>
+            (v => v && this.onChange(v))(dateHelper.parseDate(e.target.value, this.props.format || 'd.m.Y'));
     }
 
     @computed get date() {
         let fieldDate = this.props.field.value;
         if (fieldDate && typeof fieldDate === 'string') fieldDate = new Date(fieldDate);
         // при ctrl-v нужно вызвать onChange, считаем значение напрямую, если fieldDate === null
-        let inputDate = this.input && this.input.$input.datetimepicker('getValue');
+        let inputDate = this.input && this.input.$input.datetimepicker('getValue') || '';
         let date = fieldDate || inputDate;
         // Если null - подставит в input текущую дату
         return date || undefined;
+    }
+
+    onChange(e){
+        const {field} = this.props;
+        // Если DatePicker вернул null значит поле пустое. Чтобы не изменять form.isPristine вернет ''
+        if(e === null) return field.onChange('');
+        // Если DatePicker вернул ту же дату что и была не изменяем field для form.isPristine
+        if(outputConverters(e).toString() === new Date(field.value).toString()) return;
+        field.onChange(e);
     }
 
     render() {
@@ -92,6 +106,7 @@ class DatePickerField extends React.Component {
         return (
             <DatePicker {...tooltip}
                 {...field.bind({value})}
+                onChange={::this.onChange}
                 {...other}
                 className={classNames}
                 ref={input => this.input = input}
