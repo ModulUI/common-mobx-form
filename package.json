@@ -1,18 +1,14 @@
 {
   "name": "common-mobx-form",
-  "version": "0.0.14",
+  "version": "0.0.17",
   "description": "",
   "main": "./lib",
   "module": "./src",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
-    "test": "cross-env NODE_ENV=test nyc mocha",
     "test-jest": "jest",
-    "watch:test": "mocha --watch --compilers js:babel-register",
-    "start": "http-server",
     "setup": "npm install && npm run validate",
-    "git-pub": "git commit -am 'fix' && git push && npm run build && npm publish",
-    "validate": "npm-run-all lint test build"
+    "git-pub": "git commit -am 'fix' && git push && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
@@ -32,6 +28,7 @@
     "mobx-react-form": "^1.32.2",
     "mobx-react-form-devtools": "^1.7.2",
     "mobx-utils": "^3.2.1",
+    "modul-helpers": "^0.1.103",
     "modul-components": "^0.0.36",
     "prop-types": "^15.5.9",
     "react": "^15.6.1"
@@ -41,7 +38,6 @@
     "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.5.3",
     "babel-eslint": "^8.1.1",
     "babel-cli": "^6.26.0",
     "babel-core": "6.13.2",
@@ -59,30 +55,10 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "6.11.6",
-    "bootstrap": "^3.3.5",
-    "chai": "3.5.0",
-    "chai-enzyme": "0.5.0",
-    "cross-env": "2.0.0",
-    "css-loader": "0.23.1",
-    "enzyme": "2.4.1",
     "eslint": "^4.17.0",
     "eslint-plugin-react": "^7.6.1",
-    "file-loader": "0.9.0",
-    "history": "^3.0.0",
-    "http-server": "0.9.0",
-    "jsdom": "9.4.1",
-    "nib": "^1.1.2",
-    "npm-run-all": "2.3.0",
     "react": "15.3.0",
-    "react-addons-test-utils": "15.3.0",
-    "react-dom": "15.3.0",
-    "react-select": "^1.0.0-rc.10",
-    "style-loader": "^0.13.0",
-    "stylus-loader": "^3.0.1",
-    "webpack": "2.1.0-beta.20",
-    "webpack-config-utils": "2.0.0",
-    "webpack-dev-server": "2.1.0-beta.0",
-    "webpack-validator": "2.2.7"
+    "react-dom": "15.3.0"
   },
   "jest": {
     "moduleFileExtensions": [
