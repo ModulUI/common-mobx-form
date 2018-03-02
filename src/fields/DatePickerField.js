@@ -73,8 +73,8 @@ class DatePickerField extends React.Component {
     setupField(field) {
         field.setFocus = this.setFocus;
         field.$output = outputConverters;
-        // если руками введено верное значение оно мгновенно меняет field
-        this.input.$input[0].oninput = e =>
+        // если руками введено верное значение из 10 символов оно мгновенно меняет field
+        this.input.$input[0].oninput = e => e.target.value.length === 10 &&
             (v => v && this.onChange(v))(dateHelper.parseDate(e.target.value, this.props.format || 'd.m.Y'));
     }
 
