@@ -1,6 +1,6 @@
 {
   "name": "common-mobx-form",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "description": "",
   "main": "./lib",
   "module": "./src",
@@ -29,7 +29,7 @@
     "mobx-react-form-devtools": "^1.7.2",
     "mobx-utils": "^3.2.1",
     "modul-helpers": "^0.1.103",
-    "modul-components": "^0.0.36",
+    "modul-components": "^0.0.44",
     "prop-types": "^15.5.9",
     "react": "^15.6.1"
   },
