@@ -42,7 +42,10 @@ class NumberField extends React.Component {
         if (this.props.field === nextProps.field) nextProps.field.setFocus = ::this.setFocus;
     }
 
-    onChange = e => this.props.field.onChange(e);
+    onChange = (e) => {
+        this.props.onChange && this.props.onChange(e);
+        this.props.field.onChange(e);
+    };
 
     render() {
         const {type, placeholder, field, className, disabled, readOnly, maxLength, float} = this.props;
