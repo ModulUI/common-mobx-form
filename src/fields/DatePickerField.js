@@ -62,7 +62,9 @@ class DatePickerField extends React.Component {
         defaultDate: new Date(),
     }
 
-    componentDidMount() {this.setupField(this.props.field);}
+    componentDidMount() {
+        this.setupField(this.props.field);
+    }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.field === nextProps.field) this.setupField(nextProps.field);
@@ -75,7 +77,7 @@ class DatePickerField extends React.Component {
         field.$output = outputConverters;
         // если руками введено верное значение из 10 символов оно мгновенно меняет field
         this.input.$input[0].oninput = e => e.target.value.length === 10 &&
-            (v => v && this.onChange(v))(dateHelper.parseDate(e.target.value, this.props.format || 'd.m.Y'));
+        (v => v && this.onChange(v))(dateHelper.parseDate(e.target.value, this.props.format || 'd.m.Y'));
     }
 
     @computed get date() {
@@ -88,12 +90,13 @@ class DatePickerField extends React.Component {
         return date || undefined;
     }
 
-    onChange(e){
+    onChange(e) {
         const {field} = this.props;
+        this.props.onChange && this.props.onChange(e);
         // Если DatePicker вернул null значит поле пустое. Чтобы не изменять form.isPristine вернет ''
-        if(e === null) return field.onChange('');
+        if (e === null) return field.onChange('');
         // Если DatePicker вернул ту же дату что и была не изменяем field для form.isPristine
-        if(outputConverters(e).toString() === new Date(field.value).toString()) return;
+        if (outputConverters(e).toString() === new Date(field.value).toString()) return;
         field.onChange(e);
     }
 

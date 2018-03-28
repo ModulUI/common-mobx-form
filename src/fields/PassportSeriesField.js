@@ -35,7 +35,10 @@ class PassportSeriesField extends React.Component {
         this.props.field.setFocus = ::this.setFocus;
     }
 
-    onChange = e => this.props.field.onChange(e);
+    onChange = (e) => {
+        this.props.onChange && this.props.onChange(e);
+        this.props.field.onChange(e);
+    };
 
     render() {
         const {type, placeholder, field, className, disabled, readOnly} = this.props;
