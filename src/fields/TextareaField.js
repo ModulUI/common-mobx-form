@@ -40,7 +40,7 @@ class InputField extends React.Component {
     }
 
     render() {
-        const {placeholder, field, className, disabled, readOnly, id, maxLength, type, ...other} = this.props;
+        const {placeholder, field, className, disabled, readOnly, id, maxLength, type, tabIndex} = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
         return (
@@ -51,7 +51,7 @@ class InputField extends React.Component {
                 className={classNames}
                 disabled={disabled}
                 readOnly={readOnly}
-                {...other}
+                tabIndex={tabIndex}
                 {...tooltip} />
         );
     }

@@ -24,12 +24,12 @@ class CheckboxField extends React.Component {
 	}
 
 	render() {
-		const {placeholder, field, classContainer, ...other} = this.props;
+		const {placeholder, field, classContainer, tabIndex} = this.props;
 		return (
 			<div className={classContainer}>
 				<input id={this.inputId}
 					   type='checkbox'
-					{...other}
+					   tabIndex={tabIndex}
 					{...field.bind({checked: field.value})} />
 				<label for={this.inputId}
 					   className='label_check'

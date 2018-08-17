@@ -22,7 +22,7 @@ class RadioField extends React.Component {
 	}
 
 	render() {
-		const {placeholders, field, values, itemCss, ...other} = this.props;
+		const {placeholders, field, values, itemCss} = this.props;
 		return (
 			<div>
 				{
@@ -33,7 +33,6 @@ class RadioField extends React.Component {
 									value,
 									checked: field.value === value,
 								})}
-								{...other}
 								   type='radio'/>
 							<label for={`${ this.inputId }item${ i }`}
 								   className='label_check'
