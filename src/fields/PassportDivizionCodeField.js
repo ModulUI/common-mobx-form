@@ -41,7 +41,7 @@ class PassportDivizionCodeField extends React.Component {
     };
 
     render() {
-        const {type, placeholder, field, className, disabled, readOnly, tabIndex, tabIndex} = this.props;
+        const {type, placeholder, field, className, disabled, readOnly, tabIndex} = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
 
