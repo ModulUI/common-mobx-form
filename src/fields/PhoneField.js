@@ -44,7 +44,7 @@ class PhoneField extends React.Component {
     };
 
     render() {
-        const {type, placeholder, field, className, disabled, readOnly, ...other} = this.props;
+        const {type, placeholder, field, className, disabled, readOnly, tabIndex} = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
 
@@ -56,7 +56,7 @@ class PhoneField extends React.Component {
                 disabled={disabled}
                 readOnly={readOnly}
                 {...tooltip}
-                {...other}
+                tabIndex={tabIndex}
                 onChange={::this.onChange}/>
         );
     }
