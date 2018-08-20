@@ -11,7 +11,7 @@ class InputField extends React.Component {
         className: PropTypes.string,
         maxLength: PropTypes.number,
         placeholder: PropTypes.string,
-        field: PropTypes.object,
+        field: PropTypes.shape({ value: PropTypes.string }),
         validator: PropTypes.object,
         id: PropTypes.string,
         type: PropTypes.string,
