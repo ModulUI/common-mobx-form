@@ -4,36 +4,32 @@ import {observer} from 'mobx-react';
 
 @observer
 class CheckboxField extends React.Component {
+    static defaultProps = {
+        field: {
+            id: ''
+        }
+    };
+
 	static propTypes = {
 		placeholder: PropTypes.string,
 		field: PropTypes.object,
 		classContainer: PropTypes.string,
 	};
 
-	constructor(props) {
-		super(props);
-		this.inputId = Math.random().toString(36).substring(7);
-	}
-
-	handleChange() {
-		const {field} = this.props;
-		field.value = !field.value;
-		if (field.onChange) {
-			field.onChange(field.value);
-		}
-	}
+	get inputId() {
+	    return this.props.field.id || Math.random().toString(36).substring(7);
+    }
 
 	render() {
 		const {placeholder, field, classContainer, tabIndex} = this.props;
 		return (
 			<div className={classContainer}>
-				<input id={this.inputId}
-					   type='checkbox'
+				<input type='checkbox'
 					   tabIndex={tabIndex}
-					{...field.bind({checked: field.value})} />
-				<label for={this.inputId}
-					   className='label_check'
-					   onClick={() => this.handleChange()}>
+                       {...field.bind({checked: field.value})}
+                       id={this.inputId} />
+				<label htmlFor={this.inputId}
+					   className='label_check'>
 					<i className='icon'/>
 					<span className='f_small'>{placeholder}</span>
 				</label>
