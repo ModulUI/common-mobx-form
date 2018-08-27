@@ -1,6 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
+import InputMask from 'react-input-mask';
 import radValidateHoc from './../radValidateHoc';
 
 @observer
@@ -38,19 +39,29 @@ class InputField extends React.Component {
     }
 
     render() {
-        const {placeholder, field, className, disabled, readOnly, id, maxLength, type, tabIndex} = this.props;
+        const {placeholder, field, className, disabled, readOnly, id, maxLength, type, tabIndex, mask} = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
         return (
-            <input {...field.bind({placeholder, type, setFocus: this.setFocus})}
-                id={id}
-                maxLength={maxLength}
-                ref={input => this.input = input}
-                className={classNames}
-                disabled={disabled}
-                readOnly={readOnly}
-                tabIndex={tabIndex}
-                {...tooltip} />
+            mask ?
+                <InputMask {...field.bind({placeholder, type, setFocus: this.setFocus})}
+                    id={id} mask={mask}
+                    ref={input => this.input = input}
+                    className={classNames}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    tabIndex={tabIndex}
+                    {...tooltip} />
+                :
+                <input {...field.bind({placeholder, type, setFocus: this.setFocus})}
+                    id={id}
+                    maxLength={maxLength}
+                    ref={input => this.input = input}
+                    className={classNames}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    tabIndex={tabIndex}
+                    {...tooltip} />
         );
     }
 }

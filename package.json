@@ -31,7 +31,9 @@
     "modul-helpers": "^0.1.103",
     "modul-components": "^0.0.36",
     "prop-types": "^15.5.9",
-    "react": "^15.6.1"
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "react-input-mask": "^2.0.3"
   },
   "peerDependencies": {
     "react": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0",
@@ -56,9 +58,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "6.11.6",
     "eslint": "^4.17.0",
-    "eslint-plugin-react": "^7.6.1",
-    "react": "15.3.0",
-    "react-dom": "15.3.0"
+    "eslint-plugin-react": "^7.6.1"
   },
   "jest": {
     "moduleFileExtensions": [
