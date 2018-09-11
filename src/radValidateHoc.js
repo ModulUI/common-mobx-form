@@ -40,7 +40,7 @@ function radValidate({tips} = {tips: true}) {
                 const self = this;
                 return {
                     placement: tipPlace || "top",
-                    offset: tipOffset || {},
+                    offset: tipOffset,
                     preventHideOnFocus: false,
                     getContent: ::self.getError,
                     className: "error",
@@ -55,7 +55,7 @@ function radValidate({tips} = {tips: true}) {
                 const self = this;
                 return {
                     placement: tipPlace || "top",
-                    offset: tipOffset || {},
+                    offset: tipOffset,
                     preventHideOnFocus: false,
                     getContent: ::self.getError,
                     className: "",
