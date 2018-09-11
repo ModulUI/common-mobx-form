@@ -26,7 +26,7 @@ class InputField extends React.Component {
     };
 
     setFocus() {
-        this.input.focus();
+        this.props.mask ? this.input.getInputDOMNode().focus() : this.input.focus();
     }
 
     componentDidMount() {
