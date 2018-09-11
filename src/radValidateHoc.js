@@ -36,10 +36,11 @@ function radValidate({tips} = {tips: true}) {
             //   return hasError && error && (submitFailed || touched);
             // }
 
-            getTooltipProps(tipPlace) {
+            getTooltipProps(tipPlace, tipOffset) {
                 const self = this;
                 return {
                     placement: tipPlace || "top",
+                    offset: tipOffset || {},
                     preventHideOnFocus: false,
                     getContent: ::self.getError,
                     className: "error",
@@ -50,10 +51,11 @@ function radValidate({tips} = {tips: true}) {
                 };
             }
 
-            getHintTooltipProps(tipPlace) {
+            getHintTooltipProps(tipPlace, tipOffset) {
                 const self = this;
                 return {
                     placement: tipPlace || "top",
+                    offset: tipOffset || {},
                     preventHideOnFocus: false,
                     getContent: ::self.getError,
                     className: "",
@@ -73,7 +75,7 @@ function radValidate({tips} = {tips: true}) {
 
             render() {
                 const {field, hideTips = false, wrapperClassName = ''} = this.props;
-                const {tipPlace, ...wrappedProps} = this.props;
+                const {tipPlace, tipOffset, ...wrappedProps} = this.props;
                 const {isValid, hasError, focused, wasSubmit, hint, blured} = field;
 
                 const tooltip = this.getTooltipConfig({id: this.tooltipId});
@@ -93,9 +95,9 @@ function radValidate({tips} = {tips: true}) {
                 if (tips && !hideTips) {
                     const showErrorMessage = this.showTooltipError();
                     const showHintMsg = !showErrorMessage && focused && hint;
-                    let tooltipProps = this.getTooltipProps(tipPlace);
+                    let tooltipProps = this.getTooltipProps(tipPlace, tipOffset);
                     if (showHintMsg){
-                        tooltipProps = this.getHintTooltipProps(tipPlace)
+                        tooltipProps = this.getHintTooltipProps(tipPlace, tipOffset)
                     }
 
 
