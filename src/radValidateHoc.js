@@ -39,11 +39,11 @@ function radValidate({tips} = {tips: true}) {
             getTooltipProps(tipPlace, tipOffset) {
                 const self = this;
                 return {
-                    placement: tipPlace || "top",
+                    placement: tipPlace || 'top',
                     offset: tipOffset,
                     preventHideOnFocus: false,
                     getContent: ::self.getError,
-                    className: "error",
+                    className: 'error',
                     trigger: 'manual',
                     showInitial: true,
                     hideOnClickOutside: true,
@@ -54,11 +54,11 @@ function radValidate({tips} = {tips: true}) {
             getHintTooltipProps(tipPlace, tipOffset) {
                 const self = this;
                 return {
-                    placement: tipPlace || "top",
+                    placement: tipPlace || 'top',
                     offset: tipOffset,
                     preventHideOnFocus: false,
                     getContent: ::self.getError,
-                    className: "",
+                    className: '',
                     trigger: 'manual',
                     showInitial: true,
                     hideOnClickOutside: true,

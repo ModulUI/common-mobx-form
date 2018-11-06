@@ -27,7 +27,7 @@ export default class BaseForm extends Form {
         this.customOnSuccess = customOnSuccess;
         this.customOnError = customOnError;
 
-        this.submitFailed = observable(false);
+        this.submitFailed = false;
     }
 
     options() {
@@ -57,12 +57,12 @@ export default class BaseForm extends Form {
 
     @action
     afterFailedSubmit() {
-        this.submitFailed.value = true;
+        this.submitFailed = true;
     }
 
     @action
     afterSuccessSubmit() {
-        this.submitFailed.value = false;
+        this.submitFailed = false;
     }
 
     static hasErrors(err) {
