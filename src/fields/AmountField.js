@@ -16,6 +16,9 @@ class AmountField extends React.Component {
         placeholder: PropTypes.string,
         field: PropTypes.object,
         validator: PropTypes.object,
+        autoComplete: PropTypes.string,
+        autoCorrect: PropTypes.string,
+        spellCheck: PropTypes.string,
     };
     static defaultProps = {
         disabled: false,
@@ -23,7 +26,10 @@ class AmountField extends React.Component {
         className: '',
         maxLength: 255,
         type: 'text',
-    }
+        autoComplete: 'off',
+        autoCorrect: 'off',
+        spellCheck: 'off',
+    };
 
     setFocus() {
         this.input.setFocus();
@@ -38,7 +44,19 @@ class AmountField extends React.Component {
     }
 
     render() {
-        const {type, placeholder, field, className, disabled, readOnly, maxLength, tabIndex} = this.props;
+        const {
+            type,
+            placeholder,
+            field,
+            className,
+            disabled,
+            readOnly,
+            maxLength,
+            tabIndex,
+            autoComplete,
+            autoCorrect,
+            spellCheck,
+        } = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
         return (
@@ -49,6 +67,9 @@ class AmountField extends React.Component {
                 disabled={disabled}
                 readOnly={readOnly}
                 tabIndex={tabIndex}
+                autoComplete={autoComplete}
+                autoCorrect={autoCorrect}
+                spellCheck={spellCheck}
                 {...tooltip} />
         );
     }

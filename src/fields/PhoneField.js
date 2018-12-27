@@ -15,12 +15,18 @@ class PhoneField extends React.Component {
         placeholder: PropTypes.string,
         validator: PropTypes.object,
         field: PropTypes.object,
+        autoComplete: PropTypes.string,
+        autoCorrect: PropTypes.string,
+        spellCheck: PropTypes.string,
     };
     static defaultProps = {
         disabled: false,
         readOnly: false,
         className: '',
         type: 'text',
+        autoComplete: 'off',
+        autoCorrect: 'off',
+        spellCheck: 'off',
     };
 
     componentDidMount() {
@@ -44,7 +50,18 @@ class PhoneField extends React.Component {
     };
 
     render() {
-        const {type, placeholder, field, className, disabled, readOnly, tabIndex} = this.props;
+        const {
+            type,
+            placeholder,
+            field,
+            className,
+            disabled,
+            readOnly,
+            tabIndex,
+            autoComplete,
+            autoCorrect,
+            spellCheck,
+        } = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
 
@@ -55,6 +72,9 @@ class PhoneField extends React.Component {
                 type={type}
                 disabled={disabled}
                 readOnly={readOnly}
+                autoComplete={autoComplete}
+                autoCorrect={autoCorrect}
+                spellCheck={spellCheck}
                 {...tooltip}
                 tabIndex={tabIndex}
                 onChange={::this.onChange}/>

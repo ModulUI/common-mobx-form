@@ -14,12 +14,18 @@ class SnilsField extends React.Component {
         placeholder: PropTypes.string,
         validator: PropTypes.object,
         field: PropTypes.object,
+        autoComplete: PropTypes.string,
+        autoCorrect: PropTypes.string,
+        spellCheck: PropTypes.string,
     };
     static defaultProps = {
         disabled: false,
         readOnly: false,
         className: '',
         type: 'text',
+        autoComplete: 'off',
+        autoCorrect: 'off',
+        spellCheck: 'off',
     };
 
     componentDidMount() {
@@ -43,7 +49,15 @@ class SnilsField extends React.Component {
     };
 
     render() {
-        const {type, placeholder, field, className, disabled, readOnly, ...other} = this.props;
+        const {
+            type,
+            placeholder,
+            field,
+            className,
+            disabled,
+            readOnly,
+            ...other
+        } = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
 

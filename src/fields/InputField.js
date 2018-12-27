@@ -16,6 +16,9 @@ class InputField extends React.Component {
         validator: PropTypes.object,
         id: PropTypes.string,
         type: PropTypes.string,
+        autoComplete: PropTypes.string,
+        autoCorrect: PropTypes.string,
+        spellCheck: PropTypes.string,
     };
 
     static defaultProps = {
@@ -23,6 +26,9 @@ class InputField extends React.Component {
         readOnly: false,
         className: '',
         maxLength: 255,
+        autoComplete: 'off',
+        autoCorrect: 'off',
+        spellCheck: 'off',
     };
 
     setFocus() {
@@ -39,7 +45,21 @@ class InputField extends React.Component {
     }
 
     render() {
-        const {placeholder, field, className, disabled, readOnly, id, maxLength, type, tabIndex, mask} = this.props;
+        const {
+            placeholder,
+            field,
+            className,
+            disabled,
+            readOnly,
+            id,
+            maxLength,
+            type,
+            tabIndex,
+            mask,
+            autoComplete,
+            autoCorrect,
+            spellCheck,
+        } = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
         return (
@@ -51,6 +71,9 @@ class InputField extends React.Component {
                     disabled={disabled}
                     readOnly={readOnly}
                     tabIndex={tabIndex}
+                    autoComplete={autoComplete}
+                    autoCorrect={autoCorrect}
+                    spellCheck={spellCheck}
                     {...tooltip} />
                 :
                 <input {...field.bind({placeholder, type, setFocus: this.setFocus})}
@@ -61,6 +84,9 @@ class InputField extends React.Component {
                     disabled={disabled}
                     readOnly={readOnly}
                     tabIndex={tabIndex}
+                    autoComplete={autoComplete}
+                    autoCorrect={autoCorrect}
+                    spellCheck={spellCheck}
                     {...tooltip} />
         );
     }
