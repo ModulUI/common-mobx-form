@@ -18,6 +18,11 @@ class SelectField extends React.Component {
         className: '',
         maxLength: 255,
         type: 'text',
+        inputProps: {
+            autoComplete: 'off',
+            autoCorrect: 'off',
+            spellCheck: 'off',
+        }
     };
 
     static propTypes = {

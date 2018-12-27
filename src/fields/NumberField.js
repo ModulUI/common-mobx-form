@@ -18,6 +18,9 @@ class NumberField extends React.Component {
         validator: PropTypes.object,
         float: PropTypes.bool,
         precision: PropTypes.number,
+        autoComplete: PropTypes.string,
+        autoCorrect: PropTypes.string,
+        spellCheck: PropTypes.string,
     };
     static defaultProps = {
         disabled: false,
@@ -25,6 +28,9 @@ class NumberField extends React.Component {
         className: '',
         maxLength: 255,
         type: 'text',
+        autoComplete: 'off',
+        autoCorrect: 'off',
+        spellCheck: 'off',
     }
 
     setFocus() {
@@ -48,7 +54,20 @@ class NumberField extends React.Component {
     };
 
     render() {
-        const {type, placeholder, field, className, disabled, readOnly, maxLength, float, tabIndex} = this.props;
+        const {
+            type,
+            placeholder,
+            field,
+            className,
+            disabled,
+            readOnly,
+            maxLength,
+            float,
+            tabIndex,
+            autoComplete,
+            autoCorrect,
+            spellCheck,
+        } = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
         return (
@@ -60,6 +79,9 @@ class NumberField extends React.Component {
                 float={float}
                 disabled={disabled}
                 readOnly={readOnly}
+                autoComplete={autoComplete}
+                autoCorrect={autoCorrect}
+                spellCheck={spellCheck}
                 {...tooltip}
                 tabIndex={tabIndex}
                 onChange={::this.onChange}/>

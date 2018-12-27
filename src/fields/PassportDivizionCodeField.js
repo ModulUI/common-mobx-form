@@ -14,12 +14,18 @@ class PassportDivizionCodeField extends React.Component {
         placeholder: PropTypes.string,
         validator: PropTypes.object,
         field: PropTypes.object,
+        autoComplete: PropTypes.string,
+        autoCorrect: PropTypes.string,
+        spellCheck: PropTypes.string,
     };
     static defaultProps = {
         disabled: false,
         readOnly: false,
         className: '',
         type: 'text',
+        autoComplete: 'off',
+        autoCorrect: 'off',
+        spellCheck: 'off',
     };
 
     componentDidMount() {
@@ -41,7 +47,18 @@ class PassportDivizionCodeField extends React.Component {
     };
 
     render() {
-        const {type, placeholder, field, className, disabled, readOnly, tabIndex} = this.props;
+        const {
+            type,
+            placeholder,
+            field,
+            className,
+            disabled,
+            readOnly,
+            tabIndex,
+            autoComplete,
+            autoCorrect,
+            spellCheck,
+        } = this.props;
         const {tooltip, addClassName} = this.props.validator;
         const classNames = `${ className } ${ addClassName }`;
 
@@ -50,6 +67,9 @@ class PassportDivizionCodeField extends React.Component {
                 ref={input => this.input = input}
                 className={classNames}
                 type={type}
+                autoComplete={autoComplete}
+                autoCorrect={autoCorrect}
+                spellCheck={spellCheck}
                 disabled={disabled}
                 readOnly={readOnly}
                 {...tooltip}
