@@ -1,6 +1,6 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {Select} from 'modul-components';
+import Select from 'modul-ui/Select';
 import radValidateHoc from './../radValidateHoc';
 import PropTypes from 'prop-types';
 

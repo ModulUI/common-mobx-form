@@ -4,7 +4,10 @@ module.exports = {
     "es6": true
   },
   parser: "babel-eslint",
-  extends: "eslint:recommended",
+  extends: [
+      "eslint:recommended",
+      "plugin:react/recommended"
+  ],
   ecmaFeatures: {
     jsx: true,
     modules: true,
@@ -14,6 +17,11 @@ module.exports = {
     blockBindings: true,
     arrowFunctions: true,
   },
+  plugins: [
+    'react',
+    'jsx-a11y',
+    'import'
+  ],
   rules: {
     "indent": [2, 4],
     "template-curly-spacing": [2, "always"],
