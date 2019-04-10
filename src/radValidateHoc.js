@@ -36,7 +36,7 @@ function radValidate({tips} = {tips: true}) {
             //   return hasError && error && (submitFailed || touched);
             // }
 
-            getTooltipProps(tipPlace, tipOffset) {
+            getTooltipProps(tipPlace, tipOffset, hideOnClickOutside) {
                 const self = this;
                 return {
                     placement: tipPlace || 'top',
@@ -46,7 +46,7 @@ function radValidate({tips} = {tips: true}) {
                     className: 'error',
                     trigger: 'manual',
                     showInitial: true,
-                    hideOnClickOutside: true,
+                    hideOnClickOutside: typeof hideOnClickOutside !== 'undefined' ? hideOnClickOutside : true,
                     html: true
                 };
             }
@@ -75,7 +75,7 @@ function radValidate({tips} = {tips: true}) {
 
             render() {
                 const {field, hideTips = false, wrapperClassName = ''} = this.props;
-                const {tipPlace, tipOffset, ...wrappedProps} = this.props;
+                const {tipPlace, tipOffset, hideOnClickOutside, ...wrappedProps} = this.props;
                 const {isValid, hasError, focused, wasSubmit, hint, blured} = field;
 
                 const tooltip = this.getTooltipConfig({id: this.tooltipId});
@@ -95,7 +95,7 @@ function radValidate({tips} = {tips: true}) {
                 if (tips && !hideTips) {
                     const showErrorMessage = this.showTooltipError();
                     const showHintMsg = !showErrorMessage && focused && hint;
-                    let tooltipProps = this.getTooltipProps(tipPlace, tipOffset);
+                    let tooltipProps = this.getTooltipProps(tipPlace, tipOffset, hideOnClickOutside);
                     if (showHintMsg){
                         tooltipProps = this.getHintTooltipProps(tipPlace, tipOffset)
                     }

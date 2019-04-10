@@ -124,6 +124,7 @@ class SelectField extends React.Component {
                 {...props}
                 onChange={::this.onChange}
                 clearable={clearable}
+                tooltipProps={validator.tooltip}
                 {...validator.tooltip} />
         );
     }
