@@ -1,7 +1,7 @@
 import {observable, action} from 'mobx';
 import Form from 'mobx-react-form';
 import BaseField from './BaseField';
-
+import vjf from 'mobx-react-form/lib/validators/VJF';
 export default class BaseForm extends Form {
 
     @observable submitFailed;
@@ -22,6 +22,12 @@ export default class BaseForm extends Form {
                 hooks.onError = undefined;
             }
         }
+
+        plugins = {
+            ...plugins,
+            vjf: vjf()
+        };
+
         super(fieldsObj, {hooks, plugins, options});
         // До super(...props) вызывать this нельзя
         this.customOnSuccess = customOnSuccess;

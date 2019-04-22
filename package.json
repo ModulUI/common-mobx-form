@@ -1,6 +1,6 @@
 {
   "name": "common-mobx-form",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "./lib",
   "module": "./src",
@@ -21,19 +21,19 @@
   },
   "homepage": "https://github.com/ModulUI/common-mobx-form#readme",
   "dependencies": {
-    "jest": "^23.6.0",
-    "mobx": "^5.8.0",
+    "jest": "^24.7.1",
+    "mobx": "^5.9.4",
     "mobx-react": "^5.4.3",
-    "mobx-react-devtools": "^6.0.3",
-    "mobx-react-form": "1.35.1",
-    "mobx-react-form-devtools": "^1.10.0",
+    "mobx-react-devtools": "^6.1.1",
+    "mobx-react-form": "^2.0.2",
+    "mobx-react-form-devtools": "^1.11.1",
     "mobx-utils": "^5.1.0",
+    "modul-components": "^0.0.82",
     "modul-helpers": "^0.1.106",
-    "modul-components": "^0.0.81",
-    "modul-ui": "^0.0.26",
-    "prop-types": "^15.6.2",
-    "react": "16.7.0",
-    "react-dom": "16.7.0",
+    "modul-ui": "^0.0.41",
+    "prop-types": "^15.7.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
     "react-input-mask": "^2.0.4"
   },
   "peerDependencies": {
@@ -41,11 +41,11 @@
     "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.1.1",
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.3",
-    "babel-loader": "6.2.4",
-    "babel-plugin-istanbul": "1.0.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "8.0.5",
+    "babel-plugin-istanbul": "5.1.2",
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-syntax-decorators": "^6.13.0",
     "babel-plugin-transform-class-properties": "^6.6.0",
@@ -59,9 +59,9 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "6.26.0",
     "eslint": "^5.8.0",
-    "eslint-plugin-react": "^7.12.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2"
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.0"
   },
   "jest": {
     "moduleFileExtensions": [
