@@ -7,14 +7,14 @@ import {dateHelper} from 'modul-helpers';
 import radValidateHoc from './../radValidateHoc';
 
 // https://foxhound87.github.io/mobx-react-form/docs/extra/converters/input-output.html
-const outputConverters = date => date && date.getFullYear ?
+const outputConverters = date => date && date.getUTCFullYear ?
     new Date(Date.UTC(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds())) : date;
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+        date.getUTCHours(),
+        date.getUTCMinutes(),
+        date.getUTCSeconds())) : date;
 
 @observer
 class DatePickerField extends React.Component {
