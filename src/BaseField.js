@@ -18,12 +18,18 @@ class BaseField extends Field {
             }
         });
 
-        const disposer3 = observe(form, '$submitting', (submitting) => {
+        const submittingListener = submitting => {
             if (submitting.newValue) {
                 this.$wasSubmit = true;
-                disposer3();
+                return true;
             }
-        });
+            return false;
+        };
+
+        const formDisposer = observe(form, '$submitting', val => submittingListener(val) && formDisposer());
+
+        const fieldDisposer = observe(this, '$submitting', val => submittingListener(val) && fieldDisposer());
+
     }
 
     @observable $hint;
