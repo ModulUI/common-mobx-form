@@ -28,8 +28,13 @@ class InputField extends React.Component {
         this.input.focus();
     }
 
+    setSelect() {
+        this.input.select();
+    }
+
     componentDidMount() {
         this.props.field.setFocus = ::this.setFocus;
+        this.props.field.setSelect = ::this.setSelect;
     }
 
     componentWillReceiveProps(nextProps) {
